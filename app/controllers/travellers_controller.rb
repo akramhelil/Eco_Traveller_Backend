@@ -11,10 +11,10 @@ class TravellersController < ApplicationController
     end
   
     def create
-        traveller = Traveller.find_or_create_by(traveller_params)
+        traveller = Traveller.create(traveller_params)
         if traveller
             traveller.save
-            token = encode_token(user.id)
+            token = encode_token(traveller.id)
             render json: {traveller: TravellerSerializer.new(traveller), token: token}
         else 
             render json: {errors: traveller.errors.full_messages}
@@ -36,7 +36,7 @@ class TravellersController < ApplicationController
 
     def traveller_params
         # first_name: nil, last_name: nil, username: nil, password_digest: nil, profile_photo: nil, email: nil, about: nil
-        params.require(:traveller).permit(:first_name, :last_name, :username, :password, :profile_photo,:email)
+        params.require(:traveller).permit(:first_name, :last_name, :username, :password, :profile_photo,:email, :about)
     end
 
 end
