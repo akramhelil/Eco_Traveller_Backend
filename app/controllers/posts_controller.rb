@@ -11,7 +11,8 @@ class PostsController < ApplicationController
     end
   
     def create
-        post = Post.find_or_create_by(post_params)
+        byebug
+        post = Post.create(post_params)
         if post
             post.save
             render json: {post: PostSerializer.new(post)}
