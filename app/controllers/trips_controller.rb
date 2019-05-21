@@ -11,6 +11,7 @@ class TripsController < ApplicationController
     end
   
     def create
+        # byebug
         trip = Trip.find_or_create_by(trip_params)
         if trip
             trip.save
