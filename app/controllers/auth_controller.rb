@@ -12,6 +12,7 @@ class AuthController < ApplicationController
     end
   
     def auto_login
+      # byebug
       if curr_traveller
         render json: curr_traveller
       else
