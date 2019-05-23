@@ -1,5 +1,5 @@
 class Traveller < ApplicationRecord
-    validates :username, :password, presence: true
+    validates :username, :password_digest, presence: true
     validates :email, :username, uniqueness: true
 
     has_secure_password

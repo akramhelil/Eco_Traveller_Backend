@@ -6,7 +6,7 @@ class TravellersController < ApplicationController
       end
 
     def show
-        traveller = Traveller.find(params[:id])
+        traveller = Traveller.find(params[:id].to_i)
         render json: traveller
     end
   
@@ -23,7 +23,10 @@ class TravellersController < ApplicationController
 
     def update
         traveller = Traveller.find_by(id: params[:id])
-        byebug
+        # byebug
+        
+        traveller.update(traveller_params)
+        render json: traveller 
     end
   
     def destroy
