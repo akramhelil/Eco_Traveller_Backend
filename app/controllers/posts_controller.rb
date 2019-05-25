@@ -23,7 +23,8 @@ class PostsController < ApplicationController
 
     def update
         post = Post.find_by(id: params[:id])
-        byebug
+            post.update_attributes(likes: post.likes +=1)
+        render json: post
     end
   
     def destroy

@@ -23,10 +23,13 @@ class TravellersController < ApplicationController
 
     def update
         traveller = Traveller.find_by(id: params[:id])
-        # byebug
-        
-        traveller.update(traveller_params)
-        render json: traveller 
+        if traveller
+            traveller.update(traveller_params)
+            token = encode_token(traveller.id)
+            render json: {traveller: TravellerSerializer.new(traveller), token: token}
+        else 
+            render json: {errors: " Something Went Wrong!"}
+        end
     end
   
     def destroy
