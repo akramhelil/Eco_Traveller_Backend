@@ -22,9 +22,16 @@ class PostsController < ApplicationController
     end
 
     def update
-        post = Post.find_by(id: params[:id])
-            post.update_attributes(likes: post.likes +=1)
+
+        if request.headers["Authorization"]
+            post = Post.find_by(id: params[:id])
+                post.update_attributes(likes: post.likes +=1)
+            render json: post
+        else
+            post = Post.find_by(id: params[:id] )
+            post.update_attributes(post_params)
         render json: post
+        end
     end
   
     def destroy
