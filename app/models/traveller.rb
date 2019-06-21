@@ -5,5 +5,6 @@ class Traveller < ApplicationRecord
     has_secure_password
     
     has_many :trips
+    has_many :comments
     has_many :posts, through: :trips
 end
